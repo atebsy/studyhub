@@ -1,0 +1,681 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StudyHubDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="StudyHubDataModelStoreContainer">
+          <EntitySet Name="Country" EntityType="StudyHubDataModel.Store.Country" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Infrastructure" EntityType="StudyHubDataModel.Store.Infrastructure" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Speciality" EntityType="StudyHubDataModel.Store.Speciality" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="State" EntityType="StudyHubDataModel.Store.State" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Town" EntityType="StudyHubDataModel.Store.Town" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tutorial" EntityType="StudyHubDataModel.Store.Tutorial" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="StudyHubDataModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserSpeciality" EntityType="StudyHubDataModel.Store.UserSpeciality" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Infrastructure_User" Association="StudyHubDataModel.Store.FK_Infrastructure_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Infrastructure" EntitySet="Infrastructure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_Country" Association="StudyHubDataModel.Store.FK_State_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="State" EntitySet="State" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Town_State" Association="StudyHubDataModel.Store.FK_Town_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="Town" EntitySet="Town" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutorial_Speciality" Association="StudyHubDataModel.Store.FK_Tutorial_Speciality">
+            <End Role="Speciality" EntitySet="Speciality" />
+            <End Role="Tutorial" EntitySet="Tutorial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutorial_User" Association="StudyHubDataModel.Store.FK_Tutorial_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Tutorial" EntitySet="Tutorial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Country" Association="StudyHubDataModel.Store.FK_User_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_State" Association="StudyHubDataModel.Store.FK_User_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Town" Association="StudyHubDataModel.Store.FK_User_Town">
+            <End Role="Town" EntitySet="Town" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSpeciality_Speciality" Association="StudyHubDataModel.Store.FK_UserSpeciality_Speciality">
+            <End Role="Speciality" EntitySet="Speciality" />
+            <End Role="UserSpeciality" EntitySet="UserSpeciality" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSpeciality_User" Association="StudyHubDataModel.Store.FK_UserSpeciality_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserSpeciality" EntitySet="UserSpeciality" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="nvarchar" Nullable="false" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Infrastructure">
+          <Key>
+            <PropertyRef Name="InfrastructureId" />
+          </Key>
+          <Property Name="InfrastructureId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="InfrastructureName" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="CreatedAt" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Speciality">
+          <Key>
+            <PropertyRef Name="SpecialityId" />
+          </Key>
+          <Property Name="SpecialityId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SpecialityName" Type="nvarchar" Nullable="false" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Town">
+          <Key>
+            <PropertyRef Name="TownId" />
+          </Key>
+          <Property Name="TownId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TownName" Type="nvarchar" Nullable="false" MaxLength="225" />
+          <Property Name="StateId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tutorial">
+          <Key>
+            <PropertyRef Name="TutorialId" />
+          </Key>
+          <Property Name="TutorialId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="2000" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="SpecialityId" Type="int" Nullable="false" />
+          <Property Name="ImagePreviewLink" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Passwor" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="CreatedAt" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedAt" Type="datetime" Nullable="false" />
+          <Property Name="UserType" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="SeoName" Type="nvarchar" MaxLength="250" />
+          <Property Name="TutorCenterName" Type="nvarchar" MaxLength="200" />
+          <Property Name="PhysicalAddress" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="TownId" Type="int" />
+          <Property Name="ProfileImageUrl" Type="nvarchar" MaxLength="255" />
+          <Property Name="Degree" Type="nvarchar" MaxLength="255" />
+          <Property Name="GpsCoordinates" Type="nvarchar" MaxLength="200" />
+          <Property Name="description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="AvailablePersonel" Type="int" />
+        </EntityType>
+        <EntityType Name="UserSpeciality">
+          <Key>
+            <PropertyRef Name="UserSpecialityId" />
+          </Key>
+          <Property Name="UserSpecialityId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="SpecialityId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Infrastructure_User">
+          <End Role="User" Type="StudyHubDataModel.Store.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Infrastructure" Type="StudyHubDataModel.Store.Infrastructure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Infrastructure">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_Country">
+          <End Role="Country" Type="StudyHubDataModel.Store.Country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="State" Type="StudyHubDataModel.Store.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Town_State">
+          <End Role="State" Type="StudyHubDataModel.Store.State" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Town" Type="StudyHubDataModel.Store.Town" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="Town">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutorial_Speciality">
+          <End Role="Speciality" Type="StudyHubDataModel.Store.Speciality" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tutorial" Type="StudyHubDataModel.Store.Tutorial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="SpecialityId" />
+            </Principal>
+            <Dependent Role="Tutorial">
+              <PropertyRef Name="SpecialityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutorial_User">
+          <End Role="User" Type="StudyHubDataModel.Store.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tutorial" Type="StudyHubDataModel.Store.Tutorial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Tutorial">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Country">
+          <End Role="Country" Type="StudyHubDataModel.Store.Country" Multiplicity="0..1" />
+          <End Role="User" Type="StudyHubDataModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_State">
+          <End Role="State" Type="StudyHubDataModel.Store.State" Multiplicity="0..1" />
+          <End Role="User" Type="StudyHubDataModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Town">
+          <End Role="Town" Type="StudyHubDataModel.Store.Town" Multiplicity="0..1" />
+          <End Role="User" Type="StudyHubDataModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Town">
+              <PropertyRef Name="TownId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="TownId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSpeciality_Speciality">
+          <End Role="Speciality" Type="StudyHubDataModel.Store.Speciality" Multiplicity="1" />
+          <End Role="UserSpeciality" Type="StudyHubDataModel.Store.UserSpeciality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="SpecialityId" />
+            </Principal>
+            <Dependent Role="UserSpeciality">
+              <PropertyRef Name="SpecialityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSpeciality_User">
+          <End Role="User" Type="StudyHubDataModel.Store.User" Multiplicity="0..1" />
+          <End Role="UserSpeciality" Type="StudyHubDataModel.Store.UserSpeciality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserSpeciality">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StudyHubDataModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="StudyHubDataEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Countries" EntityType="StudyHubDataModel.Country" />
+          <EntitySet Name="Infrastructures" EntityType="StudyHubDataModel.Infrastructure" />
+          <EntitySet Name="Specialities" EntityType="StudyHubDataModel.Speciality" />
+          <EntitySet Name="States" EntityType="StudyHubDataModel.State" />
+          <EntitySet Name="Towns" EntityType="StudyHubDataModel.Town" />
+          <EntitySet Name="Tutorials" EntityType="StudyHubDataModel.Tutorial" />
+          <EntitySet Name="Users" EntityType="StudyHubDataModel.User" />
+          <EntitySet Name="UserSpecialities" EntityType="StudyHubDataModel.UserSpeciality" />
+          <AssociationSet Name="FK_State_Country" Association="StudyHubDataModel.FK_State_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="State" EntitySet="States" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Country" Association="StudyHubDataModel.FK_User_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Infrastructure_User" Association="StudyHubDataModel.FK_Infrastructure_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Infrastructure" EntitySet="Infrastructures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutorial_Speciality" Association="StudyHubDataModel.FK_Tutorial_Speciality">
+            <End Role="Speciality" EntitySet="Specialities" />
+            <End Role="Tutorial" EntitySet="Tutorials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSpeciality_Speciality" Association="StudyHubDataModel.FK_UserSpeciality_Speciality">
+            <End Role="Speciality" EntitySet="Specialities" />
+            <End Role="UserSpeciality" EntitySet="UserSpecialities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Town_State" Association="StudyHubDataModel.FK_Town_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="Town" EntitySet="Towns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_State" Association="StudyHubDataModel.FK_User_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Town" Association="StudyHubDataModel.FK_User_Town">
+            <End Role="Town" EntitySet="Towns" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutorial_User" Association="StudyHubDataModel.FK_Tutorial_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Tutorial" EntitySet="Tutorials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSpeciality_User" Association="StudyHubDataModel.FK_UserSpeciality_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserSpeciality" EntitySet="UserSpecialities" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="States" Relationship="StudyHubDataModel.FK_State_Country" FromRole="Country" ToRole="State" />
+          <NavigationProperty Name="Users" Relationship="StudyHubDataModel.FK_User_Country" FromRole="Country" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Infrastructure">
+          <Key>
+            <PropertyRef Name="InfrastructureId" />
+          </Key>
+          <Property Name="InfrastructureId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="InfrastructureName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedAt" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" p1:StoreGeneratedPattern="Computed" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="StudyHubDataModel.FK_Infrastructure_User" FromRole="Infrastructure" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Speciality">
+          <Key>
+            <PropertyRef Name="SpecialityId" />
+          </Key>
+          <Property Name="SpecialityId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="SpecialityName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Tutorials" Relationship="StudyHubDataModel.FK_Tutorial_Speciality" FromRole="Speciality" ToRole="Tutorial" />
+          <NavigationProperty Name="UserSpecialities" Relationship="StudyHubDataModel.FK_UserSpeciality_Speciality" FromRole="Speciality" ToRole="UserSpeciality" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Country" Relationship="StudyHubDataModel.FK_State_Country" FromRole="State" ToRole="Country" />
+          <NavigationProperty Name="Towns" Relationship="StudyHubDataModel.FK_Town_State" FromRole="State" ToRole="Town" />
+          <NavigationProperty Name="Users" Relationship="StudyHubDataModel.FK_User_State" FromRole="State" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Town">
+          <Key>
+            <PropertyRef Name="TownId" />
+          </Key>
+          <Property Name="TownId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TownName" Type="String" Nullable="false" MaxLength="225" Unicode="true" FixedLength="false" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="State" Relationship="StudyHubDataModel.FK_Town_State" FromRole="Town" ToRole="State" />
+          <NavigationProperty Name="Users" Relationship="StudyHubDataModel.FK_User_Town" FromRole="Town" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Tutorial">
+          <Key>
+            <PropertyRef Name="TutorialId" />
+          </Key>
+          <Property Name="TutorialId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="2000" Unicode="false" FixedLength="false" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" p1:StoreGeneratedPattern="Computed" />
+          <Property Name="SpecialityId" Type="Int32" Nullable="false" />
+          <Property Name="ImagePreviewLink" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Speciality" Relationship="StudyHubDataModel.FK_Tutorial_Speciality" FromRole="Tutorial" ToRole="Speciality" />
+          <NavigationProperty Name="User" Relationship="StudyHubDataModel.FK_Tutorial_User" FromRole="Tutorial" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Passwor" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedAt" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" p1:StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserType" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="SeoName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="TutorCenterName" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="PhysicalAddress" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="TownId" Type="Int32" />
+          <Property Name="ProfileImageUrl" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Degree" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="GpsCoordinates" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="AvailablePersonel" Type="Int32" />
+          <NavigationProperty Name="Country" Relationship="StudyHubDataModel.FK_User_Country" FromRole="User" ToRole="Country" />
+          <NavigationProperty Name="Infrastructures" Relationship="StudyHubDataModel.FK_Infrastructure_User" FromRole="User" ToRole="Infrastructure" />
+          <NavigationProperty Name="State" Relationship="StudyHubDataModel.FK_User_State" FromRole="User" ToRole="State" />
+          <NavigationProperty Name="Town" Relationship="StudyHubDataModel.FK_User_Town" FromRole="User" ToRole="Town" />
+          <NavigationProperty Name="Tutorials" Relationship="StudyHubDataModel.FK_Tutorial_User" FromRole="User" ToRole="Tutorial" />
+          <NavigationProperty Name="UserSpecialities" Relationship="StudyHubDataModel.FK_UserSpeciality_User" FromRole="User" ToRole="UserSpeciality" />
+        </EntityType>
+        <EntityType Name="UserSpeciality">
+          <Key>
+            <PropertyRef Name="UserSpecialityId" />
+          </Key>
+          <Property Name="UserSpecialityId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="SpecialityId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Speciality" Relationship="StudyHubDataModel.FK_UserSpeciality_Speciality" FromRole="UserSpeciality" ToRole="Speciality" />
+          <NavigationProperty Name="User" Relationship="StudyHubDataModel.FK_UserSpeciality_User" FromRole="UserSpeciality" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_State_Country">
+          <End Role="Country" Type="StudyHubDataModel.Country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="State" Type="StudyHubDataModel.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Country">
+          <End Role="Country" Type="StudyHubDataModel.Country" Multiplicity="0..1" />
+          <End Role="User" Type="StudyHubDataModel.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Infrastructure_User">
+          <End Role="User" Type="StudyHubDataModel.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Infrastructure" Type="StudyHubDataModel.Infrastructure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Infrastructure">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutorial_Speciality">
+          <End Role="Speciality" Type="StudyHubDataModel.Speciality" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tutorial" Type="StudyHubDataModel.Tutorial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="SpecialityId" />
+            </Principal>
+            <Dependent Role="Tutorial">
+              <PropertyRef Name="SpecialityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSpeciality_Speciality">
+          <End Role="Speciality" Type="StudyHubDataModel.Speciality" Multiplicity="1" />
+          <End Role="UserSpeciality" Type="StudyHubDataModel.UserSpeciality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="SpecialityId" />
+            </Principal>
+            <Dependent Role="UserSpeciality">
+              <PropertyRef Name="SpecialityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Town_State">
+          <End Role="State" Type="StudyHubDataModel.State" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Town" Type="StudyHubDataModel.Town" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="Town">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_State">
+          <End Role="State" Type="StudyHubDataModel.State" Multiplicity="0..1" />
+          <End Role="User" Type="StudyHubDataModel.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Town">
+          <End Role="Town" Type="StudyHubDataModel.Town" Multiplicity="0..1" />
+          <End Role="User" Type="StudyHubDataModel.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Town">
+              <PropertyRef Name="TownId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="TownId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutorial_User">
+          <End Role="User" Type="StudyHubDataModel.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tutorial" Type="StudyHubDataModel.Tutorial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Tutorial">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSpeciality_User">
+          <End Role="User" Type="StudyHubDataModel.User" Multiplicity="0..1" />
+          <End Role="UserSpeciality" Type="StudyHubDataModel.UserSpeciality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserSpeciality">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StudyHubDataModelStoreContainer" CdmEntityContainer="StudyHubDataEntities">
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="StudyHubDataModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Infrastructures">
+            <EntityTypeMapping TypeName="StudyHubDataModel.Infrastructure">
+              <MappingFragment StoreEntitySet="Infrastructure">
+                <ScalarProperty Name="InfrastructureId" ColumnName="InfrastructureId" />
+                <ScalarProperty Name="InfrastructureName" ColumnName="InfrastructureName" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specialities">
+            <EntityTypeMapping TypeName="StudyHubDataModel.Speciality">
+              <MappingFragment StoreEntitySet="Speciality">
+                <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
+                <ScalarProperty Name="SpecialityName" ColumnName="SpecialityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="StudyHubDataModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Towns">
+            <EntityTypeMapping TypeName="StudyHubDataModel.Town">
+              <MappingFragment StoreEntitySet="Town">
+                <ScalarProperty Name="TownId" ColumnName="TownId" />
+                <ScalarProperty Name="TownName" ColumnName="TownName" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tutorials">
+            <EntityTypeMapping TypeName="StudyHubDataModel.Tutorial">
+              <MappingFragment StoreEntitySet="Tutorial">
+                <ScalarProperty Name="TutorialId" ColumnName="TutorialId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
+                <ScalarProperty Name="ImagePreviewLink" ColumnName="ImagePreviewLink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="StudyHubDataModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Passwor" ColumnName="Passwor" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="SeoName" ColumnName="SeoName" />
+                <ScalarProperty Name="TutorCenterName" ColumnName="TutorCenterName" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="TownId" ColumnName="TownId" />
+                <ScalarProperty Name="ProfileImageUrl" ColumnName="ProfileImageUrl" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="GpsCoordinates" ColumnName="GpsCoordinates" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="AvailablePersonel" ColumnName="AvailablePersonel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserSpecialities">
+            <EntityTypeMapping TypeName="StudyHubDataModel.UserSpeciality">
+              <MappingFragment StoreEntitySet="UserSpeciality">
+                <ScalarProperty Name="UserSpecialityId" ColumnName="UserSpecialityId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

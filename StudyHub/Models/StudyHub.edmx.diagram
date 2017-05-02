@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4f7a75aa283144dfafb1c647a2ff309d" Name="Diagram1">
+        <EntityTypeShape EntityType="StudyHubDataModel.Country" Width="1.5" PointX="0.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudyHubDataModel.Infrastructure" Width="1.5" PointX="9.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudyHubDataModel.Speciality" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudyHubDataModel.State" Width="1.5" PointX="2.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudyHubDataModel.Town" Width="1.5" PointX="1" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudyHubDataModel.Tutorial" Width="1.5" PointX="12.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudyHubDataModel.User" Width="1.5" PointX="5.375" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudyHubDataModel.UserSpeciality" Width="1.5" PointX="9.75" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="StudyHubDataModel.FK_State_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="StudyHubDataModel.FK_User_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="StudyHubDataModel.FK_Infrastructure_User" ManuallyRouted="false" />
+        <AssociationConnector Association="StudyHubDataModel.FK_Tutorial_Speciality" ManuallyRouted="false" />
+        <AssociationConnector Association="StudyHubDataModel.FK_UserSpeciality_Speciality" ManuallyRouted="false" />
+        <AssociationConnector Association="StudyHubDataModel.FK_Town_State" ManuallyRouted="false" />
+        <AssociationConnector Association="StudyHubDataModel.FK_User_State" ManuallyRouted="false" />
+        <AssociationConnector Association="StudyHubDataModel.FK_User_Town" ManuallyRouted="false" />
+        <AssociationConnector Association="StudyHubDataModel.FK_Tutorial_User" ManuallyRouted="false" />
+        <AssociationConnector Association="StudyHubDataModel.FK_UserSpeciality_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
