@@ -15,7 +15,7 @@ namespace StudyHub.Controllers
         {
             var cnt = 1;
             var location = "";
-            var users = db.Users.SqlQuery("SELECT * FROM User WHERE UserType = 'Tutoring Center' OR UserType = 'Tutoring'");
+            var users = db.Users.SqlQuery("SELECT * FROM [User] WHERE UserType = 'Tutoring Center' OR UserType = 'Tutoring'");
             
             foreach (var user in users)
             {
