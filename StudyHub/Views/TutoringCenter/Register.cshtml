@@ -1,0 +1,159 @@
+﻿<div class="row" style="margin-top: 10%">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Tutoring Center Registration</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" id="tc_reg_form" role="form">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <label for="name" class="col-md-4 control-label">Name</label>
+
+                            <div class="col-md-6">
+                                <input id="tc_name" type="text" data-validation="required" class="form-control" name="TutorCenterName">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" data-validation="email" class="form-control" name="Email">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="col-md-4 control-label">Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password_confirmation" type="password" data-validation="required" name="password_confirmation" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" data-validation="confirmation">
+                            </div>
+                        </div>
+
+                           <div class="form-group">
+                            <label for="password-confirm" class="col-md-4 control-label">Brief Description</label>
+
+                            <div class="col-md-6">
+                                <textarea class="form-control" name="Description" data-validation="required"  placeholder="type a brief description of your tutoring center"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name" class="col-md-4 control-label">Number of personel</label>
+
+                            <div class="col-md-6">
+                                <input type="text" data-validation="required" onKeyPress="return numbersonly(this, event)"  class="form-control" name="AvailablePersonel">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name" class="col-md-4 control-label">Address</label>
+
+                            <div class="col-md-6">
+                                <input type="text" data-validation="required" onblur="geocodeAddress(this.value)" class="form-control" name="PhysicalAddress" id="googlePlace">
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="name" class="col-md-4 control-label">Gps Coordinates</label>
+
+                            <div class="col-md-6">
+                                <input type="text" data-validation="required" class="form-control" name="GpsCoordinates" id="gps_coordinates">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name" class="col-md-4 control-label">Country</label>
+
+                            <div class="col-md-6">
+                                <select data-validation="required" class="form-control" onchange="getStatesPerCountry(this.value)" name="CountryId" id="country">
+                                <option value="" disabled selected>Select a Country</option>
+                                 @foreach (var country in ViewBag.countries)
+                                 {
+                                   <option value="@country.CountryId">@country.CountryName</option>
+                                 }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name" class="col-md-4 control-label">Provinces/States</label>
+
+                            <div class="col-md-6">
+                                <select data-validation="required" class="form-control" name="StateId" id="states" onchange="getTownsPerState(this.value)">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name" class="col-md-4 control-label">Town</label>
+
+                            <div class="col-md-6">
+                                <select data-validation="required" class="form-control" name="TownId" id="towns">
+                                </select>
+                            </div>
+                        </div>
+    <div class="form-group">
+                            <label for="name" class="col-md-4 control-label">Phone</label>
+                            <div class="col-md-2">
+                                <select class="form-control" data-validation="required" name="code">
+                                   <option value="" selected>code</option>
+                                <option value="234">+234</option> 
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                            <input type="text" data-validation="required" class="form-control" onKeyPress="return numbersonly(this, event)" name="Phone" id="phone">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="password-confirm" class="col-md-4 control-label">Specialities</label>
+
+                            <div class="col-md-6">
+         <select class="form-control" id="specialities" name="specialities[]"  multiple="multiple" data-validation="required">
+         
+           @foreach (var speciality in ViewBag.specialities){
+            <option value="@speciality.SpecialityId">@speciality.SpecialityName</option>
+           }
+        </select>
+                            </div>
+                        </div>
+
+                           <div class="form-group">
+                            <label for="infrastructure" class="col-md-4 control-label">Infrastructure</label>
+
+                            <div class="col-md-6">
+         <select class="form-control" id="infrastructure" name="infrastructures[]" multiple="multiple" data-validation="required">
+
+        </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" id="add_new_tc_btn" class="btn btn-primary">
+                                    <i class="fa fa-btn fa-user"></i> Register
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/tutoring_center_form")
+}
+
+

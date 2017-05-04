@@ -25,7 +25,6 @@ namespace StudyHub.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public string Passwor { get; set; }
         public byte[] CreatedAt { get; set; }
         public System.DateTime UpdatedAt { get; set; }
         public string UserType { get; set; }
@@ -38,9 +37,10 @@ namespace StudyHub.Models
         public string ProfileImageUrl { get; set; }
         public string Degree { get; set; }
         public string GpsCoordinates { get; set; }
-        public string description { get; set; }
+        public string Description { get; set; }
         public string Phone { get; set; }
         public Nullable<int> AvailablePersonel { get; set; }
+        public string UserPassword { get; set; }
     
         public virtual Country Country { get; set; }
         public virtual ICollection<Infrastructure> Infrastructures { get; set; }

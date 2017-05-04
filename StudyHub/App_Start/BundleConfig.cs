@@ -10,8 +10,8 @@ namespace StudyHub
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+           // bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+           //             "~/Scripts/jquery.validate*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -25,6 +25,19 @@ namespace StudyHub
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/notify").Include(
+                "~/Scripts/notify/notify.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/tutoring_center_form").Include(
+                    "~/Scripts/tutoring_center_form.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/google-places").Include(
+                    "~/Scripts/google-places.init.js"));
+            
+
+           
         }
     }
 }

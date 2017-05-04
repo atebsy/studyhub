@@ -51,3 +51,5 @@ C:\Users\Joel\Documents\Visual Studio 2012\Projects\StudyHub\StudyHub\bin\System
 C:\Users\Joel\Documents\Visual Studio 2012\Projects\StudyHub\StudyHub\bin\System.Web.WebPages.Razor.xml
 C:\Users\Joel\Documents\Visual Studio 2012\Projects\StudyHub\StudyHub\obj\Debug\StudyHub.dll
 C:\Users\Joel\Documents\Visual Studio 2012\Projects\StudyHub\StudyHub\obj\Debug\StudyHub.pdb
+C:\Users\Joel\Documents\Visual Studio 2012\Projects\StudyHub\StudyHub\bin\System.Linq.Dynamic.dll
+C:\Users\Joel\Documents\Visual Studio 2012\Projects\StudyHub\StudyHub\obj\Debug\StudyHub.csprojResolveAssemblyReference.cache

@@ -50,7 +50,7 @@ namespace StudyHub
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="UserId,FirstName,LastName,Email,Passwor,CreatedAt,UpdatedAt,UserType,SeoName,TutorCenterName,PhysicalAddress,CountryId,StateId,TownId,ProfileImageUrl,Degree,GpsCoordinates,description,Phone,AvailablePersonel")] User user)
+        public ActionResult Create([Bind(Include="UserId,FirstName,LastName,Email,UserPassword,CreatedAt,UpdatedAt,UserType,SeoName,TutorCenterName,PhysicalAddress,CountryId,StateId,TownId,ProfileImageUrl,Degree,GpsCoordinates,description,Phone,AvailablePersonel")] User user)
         {
             if (ModelState.IsValid)
             {
